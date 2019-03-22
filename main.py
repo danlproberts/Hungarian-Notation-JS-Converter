@@ -8,9 +8,6 @@ def trackedVarReplacer(line, varDict, callOfVarsNum):
 
             keyIndex = line.find(key)
 
-            #if key == "newBlob" and keyIndex > -1:
-                #print ("HIT!", line, "\n" + str(keyIndex), "Before:", line[keyIndex - 1], "After:", line[keyIndex + len(key)])
-
             if keyIndex > -1 and trackedVarChecker(line[keyIndex - 1], line[keyIndex + len(key)]):
                 callOfVarsNum += 1
                 line = variableReplacer(line, key, varDict[key])
@@ -150,7 +147,10 @@ def main():
     validFileName = False
 
     while not validFileName:
-        fileName = input('Please enter a file name with the ".js" extention: ') + ".js"
+        fileName = input('Please enter a file name with the ".js" extention type: ')
+
+        if fileName[-3:] != ".js":
+            fileName += ".js"
 
         if fileName in os.listdir():
             validFileName = True
